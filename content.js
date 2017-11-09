@@ -70,11 +70,19 @@ port.onMessage.addListener(function(msg) {
   let counter = 0;
   for (let i = 0; i < elements.length; i++) {
     if (i % 2 !== 0) {
-      const modalItem = document.createElement('div');
+      const link = 'https://stackshare.io/' + String(elements[i].href.match(/(com\/.+)/gi)).slice(4);
+      const modalItem = document.createElement('a');
+      modalItem.href = link;
+      modalItem.setAttribute("target", "_blank");
       logos[counter].children[0].style.width = '100px';
       modalItem.innerHTML += logos[counter].innerHTML + '<br>';
       modalItem.innerHTML += elements[i].innerHTML;
       modalItem.style.fontSize = '1.2em';
+      modalItem.style.fontWeight = '800';
+      modalItem.style.outline = 'none';
+      modalItem.style.color = '#777';
+      modalItem.style.textOverflow = 'ellipsis';
+      modalItem.style.overflow = 'hidden';
       modalItem.style.display = 'flex';
       modalItem.style.flexDirection = 'column';
       modalItem.style.justifyContent = 'center';
@@ -85,6 +93,8 @@ port.onMessage.addListener(function(msg) {
       modalItem.style.padding = '13px';
       modalItem.style.maxWidth = '127px';
       modalItem.style.textAlign = 'center';
+      modalItem.style.cursor = 'pointer';
+      modalItem.classList.add('modal-item');
       modalBox.append(modalItem);
       counter++;
     };
