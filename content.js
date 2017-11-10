@@ -6,8 +6,8 @@ document.addEventListener('keypress', event => {
       else willExists.style.display = 'none';
     } else {
       const will = document.createElement('div');
-      will.style.zIndex = '100002';
-      will.innerHTML = '<img style="width: 100%" src="https://media.giphy.com/media/l4EpjkhCRjTH4LBjG/giphy.gif">ksjdhfkjdsg';
+      will.style.zIndex = '100008';
+      will.innerHTML = '<img style="width: 100%" src="https://media.giphy.com/media/l4EpjkhCRjTH4LBjG/giphy.gif">';
       will.style.position = 'fixed';
       will.style.width = '100%';
       will.style.height = '100%';
@@ -16,6 +16,46 @@ document.addEventListener('keypress', event => {
       will.style.display = 'block';
       will.id = 'willDance';
       document.body.appendChild(will);
+    }
+  } 
+  
+  if (event.key === '!') {
+    if (document.getElementById('fellowsDance')) {
+      const fellowsExists = document.getElementById('fellowsDance');
+      if (fellowsExists.style.display === 'none') fellowsExists.style.display = 'block';
+        else fellowsExists.style.display = 'none';
+    } else {
+      const fellows = document.createElement('div');
+      fellows.style.zIndex = '100002';
+      fellows.innerHTML = '<img style="width: 100%" src="https://media.giphy.com/media/xUOxeRHnT4k38H3WEg/giphy.gif">';
+      fellows.style.position = 'fixed';
+      fellows.style.width = '100%';
+      fellows.style.height = '100%';
+      fellows.style.top = '0';
+      fellows.style.left = '0';
+      fellows.style.display = 'block';
+      fellows.id = 'fellowsDance';
+      document.body.appendChild(fellows);
+    }
+  }
+
+  if (event.key === '@') {
+    if (document.getElementById('schnoDance')) {
+      const schnoExists = document.getElementById('schnoDance');
+      if (schnoExists.style.display === 'none') schnoExists.style.display = 'block';
+      else schnoExists.style.display = 'none';
+    } else {
+      const schno = document.createElement('div');
+      schno.style.zIndex = '100002';
+      schno.innerHTML = '<img style="width: 100%" src="https://media.giphy.com/media/l1KdbwaSjiGqkYzEA/giphy.gif">';
+      schno.style.position = 'fixed';
+      schno.style.width = '100%';
+      schno.style.height = '100%';
+      schno.style.top = '0';
+      schno.style.left = '0';
+      schno.style.display = 'block';
+      schno.id = 'schnoDance';
+      document.body.appendChild(schno);
     }
   }
 });
@@ -29,10 +69,13 @@ port.onMessage.addListener(function(msg) {
   if (document.getElementById('sweetestteriyaki')) {
     const existingModal = document.getElementById('sweetestteriyaki');
     const existingBackModal = document.getElementById('sweeterteriyaki');
+    const existingLogo = document.getElementById('teriyakilogo');
     if (existingModal.style.display === 'none') existingModal.style.display = 'flex';
     else existingModal.style.display = 'none';
     if (existingBackModal.style.display === 'none') existingBackModal.style.display = 'flex';
     else existingBackModal.style.display = 'none';
+    if (existingLogo.style.display === 'none') existingLogo.style.display = 'flex';
+    else existingLogo.style.display = 'none';
     return;
   }
 
@@ -57,10 +100,11 @@ port.onMessage.addListener(function(msg) {
   modalBox.style.height = '75vh';
   modalBox.style.backgroundColor = 'white';
   modalBox.style.position = 'fixed';
-  modalBox.style.top = '12.5vh';
+  modalBox.style.top = '16.5vh';
   modalBox.style.left = '25vw';
   modalBox.style.padding = '20px';
   modalBox.style.borderRadius = '10px';
+  modalBox.style.border = '2px solid black';
   modalBox.style.zIndex = '100001';
   modalBox.id = 'sweetestteriyaki';
   modalBox.style.overflowY = 'scroll';
@@ -103,6 +147,14 @@ port.onMessage.addListener(function(msg) {
     modalBox.append(modalItem);
     counter++;
   }
+  const logo = document.createElement('div');
+  logo.innerHTML = '<img style="border-right: 2px solid black; border-left: 2px solid black; border-top: 2px solid black; border-top-left-radius: 25px; border-top-right-radius: 25px" src="https://i.imgur.com/Slex0th.png">';
+  logo.style.zIndex = '100002';
+  logo.style.top = 'calc(16.5vh - 120px)';
+  logo.style.left = 'calc(50vw - 250px)';
+  logo.style.position = 'fixed';
+  logo.id = 'teriyakilogo';
   modal.appendChild(modalBox);
   document.body.appendChild(modal);
+  document.body.appendChild(logo);
 });
