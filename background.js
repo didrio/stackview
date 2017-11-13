@@ -1,3 +1,5 @@
+//logo color is #1271ED
+
 chrome.runtime.onConnect.addListener(function(port) {
 
   port.onMessage.addListener(function(msg) {
@@ -8,6 +10,14 @@ chrome.runtime.onConnect.addListener(function(port) {
     xhr.send();
     function handleReady() {
       if (xhr.readyState === 4 && xhr.status === 200) {
+
+        chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
+          chrome.browserAction.setIcon({
+            path: "./images/iconblue32.png",
+            tabId: tabs[0].id
+          });
+        });
+
         chrome.browserAction.onClicked.addListener(tab => {
           port.postMessage({message: xhr.responseText});
         });
